@@ -1,8 +1,10 @@
 package ru.itis.kpfu.selyantsev.model;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "account")
@@ -18,17 +20,22 @@ public class User {
     private Integer userId;
 
     @Column(name = "account_name", nullable = false)
-    private String name;
+    private String username;
 
     @Column(name = "account_email", nullable = false)
-    private String email;
+    private String userEmail;
+
+    @Column(name = "date_of_birth", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateOfBirth;
 
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
                 '}';
     }
 }
