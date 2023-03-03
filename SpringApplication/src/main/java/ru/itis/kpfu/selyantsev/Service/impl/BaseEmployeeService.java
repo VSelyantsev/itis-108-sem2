@@ -11,19 +11,15 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BaseEmployeeService implements EmployeeService {
-
     private final EmployeeRepository employeeRepository;
-
     @Override
     public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
-
     @Override
     public Employee findEmployeeByFioAndJobTitle(String fio, String jobTitle) {
         return employeeRepository.findEmployeeByFioAndJobTitle(fio, jobTitle);
     }
-
     @Override
     public void deleteEmployeeByJobTitle(String jobTitle) {
         employeeRepository.deleteEmployeeByJobTitle(jobTitle);

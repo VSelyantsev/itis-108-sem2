@@ -12,20 +12,14 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
-
     User getUserByUserEmail(String email);
-
     Page<User> findAll(Pageable pageable);
-
     @Query(value = "select * from users u where u.account_name like ?1", nativeQuery = true)
     List<User> findAllByUsername(String name);
-
     @Query(value = "select u from User u where u.userEmail = :email")
     List<User> findAllByUserEmail(String email);
-
     @Query(value = "select u from User u where u.username = :name and u.userId = :id")
     User findUserByUsernameAndUserId(@Param("name") String name, @Param("id") Integer id);
-
     @Query(value = "select u from User u where u.userId in :ids")
     List<User> findAllByIds(@Param("ids") List<Integer> ids);
 }

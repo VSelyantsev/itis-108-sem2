@@ -8,11 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Integer> {
-
     List<Project> findAll();
-
     Project findProjectById(Integer id);
-
     void deleteProjectByProjectName(String name);
 
 }

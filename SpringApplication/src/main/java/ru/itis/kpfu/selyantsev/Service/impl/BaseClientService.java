@@ -11,19 +11,15 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class BaseClientService implements ClientService {
-
     private final ClientRepository clientRepository;
-
     @Override
     public List<Client> findAll() {
         return clientRepository.findAll();
     }
-
     @Override
     public Client findClientByName(String clientName) {
         return clientRepository.findClientByClientName(clientName);
     }
-
     @Override
     public void deleteClientById(Integer id) {
         clientRepository.deleteClientByIdNotNull(id);
