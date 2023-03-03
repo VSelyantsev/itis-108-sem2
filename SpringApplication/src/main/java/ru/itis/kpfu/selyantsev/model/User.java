@@ -29,6 +29,13 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
+    @OneToOne(mappedBy = "user")
+    private Passport passport;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id")
+    private Group group;
+
     @Override
     public String toString() {
         return "User{" +
