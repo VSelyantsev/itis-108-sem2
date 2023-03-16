@@ -3,6 +3,7 @@ package ru.itis.kpfu.selyantsev.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import ru.itis.kpfu.selyantsev.Service.impl.BaseUserService;
 import ru.itis.kpfu.selyantsev.dto.request.CreateUserRequestDto;
 import ru.itis.kpfu.selyantsev.dto.response.UserResponseDto;
 import ru.itis.kpfu.selyantsev.exception.AccountNotFoundException;
@@ -12,12 +13,12 @@ import ru.itis.kpfu.selyantsev.repository.UserRepository;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class AccountController {
     private final UserRepository userRepository;
+    private final BaseUserService userService;
     @GetMapping("/view")
     public ModelAndView showVisualization() {
         ModelAndView model = new ModelAndView();
@@ -27,14 +28,9 @@ public class AccountController {
     }
 
     @PostMapping("/user/create")
-    public UserResponseDto createAccount(@Valid @ModelAttribute("userRequestDto") CreateUserRequestDto userRequestDto) {
-        return UserResponseDto.fromEntity(userRepository.save(
-                User.builder()
-                        .username(userRequestDto.getName())
-                        .userEmail(userRequestDto.getEmail())
-                        .dateOfBirth(userRequestDto.getDateOfBirth())
-                        .build()
-        ));
+    public String createAccount(@Valid @ModelAttribute("userRequestDto") CreateUserRequestDto userRequestDto) {
+        userService.create(userRequestDto);
+        return "sign_up_success";
     }
 
     @GetMapping("/user/delete/{userId}")
@@ -70,10 +66,7 @@ public class AccountController {
 
     @GetMapping(value = "/users")
     public List<UserResponseDto> findAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserResponseDto::fromEntity)
-                .collect(Collectors.toList());
+        return userService.findAll();
     }
 
 

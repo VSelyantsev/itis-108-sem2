@@ -4,10 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import ru.itis.kpfu.selyantsev.Service.impl.BaseClientService;
 import ru.itis.kpfu.selyantsev.Service.impl.BaseEmployeeService;
 import ru.itis.kpfu.selyantsev.Service.impl.BaseProjectService;
 import ru.itis.kpfu.selyantsev.Service.impl.BaseSkillService;
+import ru.itis.kpfu.selyantsev.dto.request.CreateUserRequestDto;
 import ru.itis.kpfu.selyantsev.model.newModel.Client;
 import ru.itis.kpfu.selyantsev.model.newModel.Project;
 import ru.itis.kpfu.selyantsev.model.newModel.Skill;
@@ -34,7 +36,7 @@ public class MainController {
 
     @GetMapping("service/employee/delete/{jobTitle}")
     public void deleteEmployeeService(@PathVariable(required = false) String jobTitle) {
-        employeeService.deleteEmployeeByJobTitle(jobTitle);
+        employeeService.deleteEmployeeByEmployeeJobTitle(jobTitle);
     }
 
     @GetMapping("service/project/{projectId}")
@@ -47,4 +49,5 @@ public class MainController {
                                              @PathVariable(required = false) String skillDefinition) {
         return skillService.findSkillByNameAndDefinition(skillName, skillDefinition);
     }
+
 }

@@ -1,5 +1,6 @@
 package ru.itis.kpfu.selyantsev.Service.impl;
 
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.itis.kpfu.selyantsev.Service.ProjectService;
@@ -9,7 +10,7 @@ import ru.itis.kpfu.selyantsev.repository.newRepository.ProjectRepository;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class BaseProjectService implements ProjectService {
     private final ProjectRepository projectRepository;
     @Override

@@ -7,30 +7,29 @@ import ru.itis.kpfu.selyantsev.model.Role;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name = "client")
+@Entity(name = "user_entity")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class Client extends UserEntity {
+public class UserEntity {
 
-    @Column(length = 20, nullable = true)
-    private String clientName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = true)
+    private Integer id;
 
     @Column(nullable = true)
-    private String clientEmail;
+    private String userEntityEmail;
 
     @Column(nullable = true)
-    private String clientPassword;
-
-    @OneToOne(mappedBy = "client")
-    private Employee employee;
+    private String userEntityPassword;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
-            name = "client_role",
-            joinColumns = @JoinColumn(name = "client_id", referencedColumnName = "id"),
+            name = "user_entity_role",
+            joinColumns = @JoinColumn(name = "user_entity_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private Set<Role> roles;

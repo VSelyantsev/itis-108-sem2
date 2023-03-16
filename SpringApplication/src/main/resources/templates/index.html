@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="d-inline-flex">
+    <div>
+        <button>
+            <a th:href="@{/client/sign_up}">Sign up as a Client </a>
+        </button>
+    </div>
+    <br>
+    <div>
+        <button>
+            <a th:href="@{/employee/sign_up}">Sign up as a Employee </a>
+        </button>
+    </div>
+    <br>
+    <div>
+        <button>
+            <a th:href="@{/client/login}">Logi as a Client </a>
+        </button>
+    </div>
+    <br>
+    <div>
+        <button>
+            <a th:href="@{/employee/sign_up}">Login as a Employee </a>
+        </button>
+    </div>
+</div>
+</body>
+</html>

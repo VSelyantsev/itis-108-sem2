@@ -1,34 +1,40 @@
 package ru.itis.kpfu.selyantsev.model.newModel;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
+import ru.itis.kpfu.selyantsev.model.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "employee")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Employee {
+@SuperBuilder
+public class Employee extends UserEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "employee_fio", nullable = true)
+    private String employeeFio;
 
-    @Column(nullable = false)
-    private String fio;
+    @Column(name = "employee_job_title", length = 20, nullable = true)
+    private String employeeJobTitle;
 
-    @Column(nullable = true, length = 20)
-    private String jobTitle;
+    @Email
+    @Column(name = "employee_email", nullable = true)
+    private String employeeEmail;
+
+    @Column(name = "employee_password", nullable = true)
+    private String employeePassword;
 
     @OneToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "projects_employees",
             joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
@@ -40,4 +46,11 @@ public class Employee {
     @JoinColumn(name = "skill_id")
     private Skill skill;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "employee_role",
+            joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    )
+    private Set<Role> roles;
 }
