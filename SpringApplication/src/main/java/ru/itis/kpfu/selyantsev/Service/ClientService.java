@@ -12,4 +12,5 @@ public interface ClientService {
     List<Client> findAll();
     Client findClientByName(String clientName);
     void deleteClientById(Integer id);
+    void updateClient(ClientRequestDto clientRequestDto);
 }

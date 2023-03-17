@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import ru.itis.kpfu.selyantsev.Service.EmployeeService;
 import ru.itis.kpfu.selyantsev.dto.request.EmployeeRequestDto;
 import ru.itis.kpfu.selyantsev.model.Role;
+import ru.itis.kpfu.selyantsev.model.newModel.Client;
 import ru.itis.kpfu.selyantsev.model.newModel.Employee;
 import ru.itis.kpfu.selyantsev.repository.newRepository.EmployeeRepository;
+import ru.itis.kpfu.selyantsev.util.mapper.ClientMapper;
 import ru.itis.kpfu.selyantsev.util.mapper.EmployeeMapper;
 
 import java.util.HashSet;
@@ -42,5 +44,16 @@ public class BaseEmployeeService implements EmployeeService {
     @Override
     public void deleteEmployeeByEmployeeJobTitle(String jobTitle) {
         employeeRepository.deleteEmployeeByEmployeeJobTitle(jobTitle);
+    }
+
+    @Override
+    public void updateEmployee(EmployeeRequestDto employeeRequestDto) {
+        Employee anotherRequest = EmployeeMapper.toEntity(employeeRequestDto);
+        Employee newEmployee = employeeRepository.findEmployeeByEmployeeFio(anotherRequest.getEmployeeFio());
+        newEmployee.setEmployeeEmail(anotherRequest.getEmployeeEmail());
+        newEmployee.setEmployeePassword(anotherRequest.getEmployeePassword());
+        newEmployee.setUserEntityEmail(anotherRequest.getUserEntityEmail());
+        newEmployee.setUserEntityPassword(anotherRequest.getUserEntityPassword());
+        employeeRepository.save(newEmployee);
     }
 }

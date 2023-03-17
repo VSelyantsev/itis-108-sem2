@@ -20,13 +20,19 @@ public class ClientController {
         return "sign_up_success";
     }
 
+    @PostMapping("/client/update")
+    public String updateClient(@ModelAttribute("clientRequestDto") ClientRequestDto clientRequestDto) {
+        clientService.updateClient(clientRequestDto);
+        return "update_success";
+    }
+
     @GetMapping("client/findAll")
     public List<Client> getClients() {
         return clientService.findAll();
     }
 
-    @GetMapping("client/findByName/{clientName}")
-    public Client getClientByName(@PathVariable String clientName) {
+    @GetMapping("client/findByName/")
+    public Client getClientByName(String clientName) {
         return clientService.findClientByName(clientName);
     }
 

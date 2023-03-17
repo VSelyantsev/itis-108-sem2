@@ -1,6 +1,7 @@
 package ru.itis.kpfu.selyantsev.Service;
 
 
+import ru.itis.kpfu.selyantsev.dto.request.ClientRequestDto;
 import ru.itis.kpfu.selyantsev.dto.request.EmployeeRequestDto;
 import ru.itis.kpfu.selyantsev.model.newModel.Employee;
 
@@ -13,4 +14,6 @@ public interface EmployeeService {
     List<Employee> findAll();
     Employee findEmployeeByFio(String fio);
     void deleteEmployeeByEmployeeJobTitle(String jobTitle);
+
+    void updateEmployee(EmployeeRequestDto employeeRequestDto);
 }

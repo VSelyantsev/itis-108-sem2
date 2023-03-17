@@ -31,5 +31,17 @@ public class BaseMainController {
         return "sign_up_for_employee";
     }
 
+    @GetMapping("/profile/client")
+    public String clientUpdate(Model model) {
+        model.addAttribute("clientRequestDto", new ClientRequestDto());
+        return "personal_area_for_client";
+    }
+
+
+    @GetMapping("/profile/employee")
+    public String employeeUpdate(Model model) {
+        model.addAttribute("employeeRequestDto", new EmployeeRequestDto());
+        return "personal_area_for_employee";
+    }
     // also add sign up for admin
 }

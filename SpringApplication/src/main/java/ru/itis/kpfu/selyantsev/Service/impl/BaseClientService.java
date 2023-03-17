@@ -41,4 +41,16 @@ public class BaseClientService implements ClientService {
     public void deleteClientById(Integer id) {
         clientRepository.deleteClientById(id);
     }
+
+    @Override
+    public void updateClient(ClientRequestDto clientRequestDto) {
+        Client anotherRequest = ClientMapper.toEntity(clientRequestDto);
+        Client newClient = clientRepository.findClientByClientName(anotherRequest.getClientName());
+        newClient.setClientEmail(anotherRequest.getClientName());
+        newClient.setClientPassword(anotherRequest.getClientPassword());
+        newClient.setUserEntityEmail(anotherRequest.getUserEntityEmail());
+        newClient.setUserEntityPassword(anotherRequest.getClientPassword());
+        clientRepository.save(newClient);
+    }
+
 }

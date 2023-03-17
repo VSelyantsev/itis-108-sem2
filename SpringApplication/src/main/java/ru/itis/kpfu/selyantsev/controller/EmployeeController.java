@@ -3,6 +3,7 @@ package ru.itis.kpfu.selyantsev.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.kpfu.selyantsev.Service.EmployeeService;
+import ru.itis.kpfu.selyantsev.dto.request.ClientRequestDto;
 import ru.itis.kpfu.selyantsev.dto.request.EmployeeRequestDto;
 import ru.itis.kpfu.selyantsev.model.newModel.Employee;
 
@@ -33,6 +34,12 @@ public class EmployeeController {
     @GetMapping("employee/deleteByJobTitle/{employeeJobTitle}")
     public void deleteEmployeeByJobTitle(@PathVariable String employeeJobTitle) {
         employeeService.deleteEmployeeByEmployeeJobTitle(employeeJobTitle);
+    }
+
+    @PostMapping("/employee/update")
+    public String updateClient(@ModelAttribute("employeeRequestDto") EmployeeRequestDto employeeRequestDto) {
+        employeeService.updateEmployee(employeeRequestDto);
+        return "update_success";
     }
 
 }
