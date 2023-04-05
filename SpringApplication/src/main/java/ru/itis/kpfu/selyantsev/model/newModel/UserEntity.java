@@ -33,4 +33,9 @@ public class UserEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private Set<Role> roles;
+
+    private boolean enabled;
+
+    @Column(length = 64)
+    private String verificationCode;
 }

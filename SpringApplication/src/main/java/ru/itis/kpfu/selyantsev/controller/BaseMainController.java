@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.itis.kpfu.selyantsev.dto.request.ClientRequestDto;
 import ru.itis.kpfu.selyantsev.dto.request.EmployeeRequestDto;
+import ru.itis.kpfu.selyantsev.dto.request.UserEntityRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class BaseMainController {
@@ -15,7 +18,8 @@ public class BaseMainController {
     }
 
     @GetMapping("/home")
-    public String getHome() {
+    public String getHome(HttpServletRequest request) {
+        String currentPrincipalName = request.getUserPrincipal().getName();
         return "home";
     }
 
@@ -43,5 +47,10 @@ public class BaseMainController {
         model.addAttribute("employeeRequestDto", new EmployeeRequestDto());
         return "personal_area_for_employee";
     }
-    // also add sign up for admin
+
+    @GetMapping("/user/sign_up")
+    public String userSignUp(Model model) {
+        model.addAttribute("userEntityRequest", new UserEntityRequest());
+        return "sign_up_for_user";
+    }
 }

@@ -1,6 +1,12 @@
 server:
   port: 8082
 
+mail:
+  from: vselyantsev@gmail.com
+  sender: Test App
+  subject: Please verify your email
+  content: Dear {name}, Please click the link below for verify your account <a href={url}>VERIFY</a>
+
 spring:
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/spring_database}
@@ -11,4 +17,20 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
+  mail:
+    host: smtp.gmail.com
+    username: vselyantsev@gmail.com
+    password: ikfdzqiqtvqoctfu
+    port: 587
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+          auth: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+  liquibase:
+    change-log: static/DB/changelog/changelog-master.yml
