@@ -33,4 +33,4 @@ spring:
           timeout: 5000
           writetimeout: 5000
   liquibase:
-    change-log: static/DB/changelog/changelog-master.yml
+    change-log: classpath:/static/DB/changelog/changelog-master.yml

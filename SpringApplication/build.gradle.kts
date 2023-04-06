@@ -50,10 +50,14 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
 
     // liquibase
-    implementation("org.liquibase:liquibase-core:4.20.0")
-    liquibaseRuntime("org.liquibase:liquibase-core:4.20.0")
+    implementation("org.liquibase:liquibase-core:4.10.0")
+    liquibaseRuntime("org.liquibase:liquibase-core:4.10.0")
     liquibaseRuntime("org.postgresql:postgresql:42.5.3")
     liquibaseRuntime("info.picocli:picocli:4.6.3")
+}
+
+tasks.getByName<Test>("test") {
+    useJUnitPlatform()
 }
 
 tasks.withType<Test> {
@@ -87,18 +91,17 @@ tasks.jacocoTestCoverageVerification {
 }
 
 
-
 var props = Properties()
 props.load(file("src/main/resources/liquibase.properties").inputStream())
 
 liquibase {
     activities.register("main") {
         arguments = mapOf(
-            "changeLogFile" to props.get("change-log-file"),
             "url" to props.get("url"),
+            "driver" to props.get("driver-class-name"),
             "username" to props.get("username"),
             "password" to props.get("password"),
-            "driver" to props.get("driver-class-name")
+            "changeLogFile" to props.get("change-log-file")
         )
     }
 }
