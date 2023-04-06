@@ -22,6 +22,13 @@
             <a class="nav-link" th:href="@{/sign_up_success}">Success</a>
         </li>
     </div>
+
+    <div class="container text-center">
+        <h1>Home page</h1>
+        <div sec:authorize="isAuthenticated()">
+            Authenticated as <span sec:authentication="name"></span>
+        </div>
+    </div>
 </div>
 </body>
 </html>
