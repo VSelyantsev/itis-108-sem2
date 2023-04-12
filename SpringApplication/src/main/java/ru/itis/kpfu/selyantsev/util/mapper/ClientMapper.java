@@ -2,6 +2,7 @@ package ru.itis.kpfu.selyantsev.util.mapper;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import ru.itis.kpfu.selyantsev.dto.request.ClientRequestDto;
+import ru.itis.kpfu.selyantsev.dto.response.ClientResponseDto;
 import ru.itis.kpfu.selyantsev.model.newModel.Client;
 
 public class ClientMapper {
@@ -19,6 +20,13 @@ public class ClientMapper {
                 .userEntityPassword(
                         encoder.encode(clientRequestDto.getClientPassword())
                 )
+                .build();
+    }
+
+    public static ClientResponseDto toResponse(Client client) {
+        return ClientResponseDto.builder()
+                .clientName(client.getClientName())
+                .clientEmail(client.getClientEmail())
                 .build();
     }
 }

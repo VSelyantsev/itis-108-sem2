@@ -13,7 +13,6 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     Client findClientById(Integer clientId);
-    List<Client> findAll();
     Client findClientByClientName(String clientName);
     void deleteClientById(Integer id);
 }
