@@ -1,11 +1,11 @@
-package ru.itis.kpfu.selyantsev.dto;
+package ru.itis.kpfu.selyantsev.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class MessageDto {
+public class MessageRequestDto {
     private String message;
-    private String username;
+    private String name;
 }

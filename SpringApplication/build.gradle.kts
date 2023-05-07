@@ -24,6 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-aop")
+    implementation("org.springframework.boot:spring-boot-starter-websocket")
     implementation ("org.springframework.boot:spring-boot-starter-mail")
     implementation ("javax.mail:javax.mail-api:1.6.2")
 
@@ -43,6 +44,8 @@ dependencies {
     implementation("org.webjars:jquery:3.6.0")
     implementation("org.webjars:bootstrap:4.6.0")
     implementation("org.webjars:webjars-locator-core:0.46")
+    implementation("org.webjars:stomp-websocket:2.3.4")
+    implementation("org.webjars:sockjs-client:1.5.1")
 
     // test
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")

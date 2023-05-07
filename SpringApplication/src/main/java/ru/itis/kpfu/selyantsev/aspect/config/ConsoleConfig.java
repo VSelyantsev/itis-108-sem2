@@ -6,6 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.StopWatch;
 import ru.itis.kpfu.selyantsev.aspect.SystemArchitecture;
 import ru.itis.kpfu.selyantsev.aspect.constants.Message;
@@ -30,7 +31,7 @@ public class ConsoleConfig {
         );
     }
 
-    @After(value = "ru.itis.kpfu.selyantsev.aspect.SystemArchitecture.onAllMethods()")
+    @Around(value = "ru.itis.kpfu.selyantsev.aspect.SystemArchitecture.onAllMethods()")
     public void afterOnAllMethods(ProceedingJoinPoint joinPoint) throws Throwable {
         final StopWatch stopWatch = new StopWatch();
         stopWatch.start();
@@ -45,10 +46,9 @@ public class ConsoleConfig {
     }
 
     @Around("execution(* ru.itis.kpfu.selyantsev.aspect.SystemArchitecture.aroundSpecificMethod())")
-    public void aroundMethod(ProceedingJoinPoint joinPoint) throws Throwable {
+    public void aroundMethod(JoinPoint joinPoint) throws Throwable {
         log.info(Message.START_METHOD, joinPoint.getSignature().getName());
-        Object result = joinPoint.proceed();
-        log.info(Message.END_METHOD, joinPoint.getSignature().getName(), result);
+        log.info(Message.END_METHOD, joinPoint.getSignature().getName());
     }
 
     @AfterThrowing(value = "ru.itis.kpfu.selyantsev.aspect.SystemArchitecture.onAllMethods()", throwing = "exception")
