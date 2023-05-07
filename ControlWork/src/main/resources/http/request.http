@@ -1,0 +1,27 @@
+POST http://localhost:8081/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "trepetyn",
+  "email": "selyantsev.vladislav775@mail.ru",
+  "password": "1234",
+  "city": "Kazan"
+}
+
+###
+POST http://localhost:8081/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "selyantsev.vladislav775@mail.ru",
+  "password": "1234"
+}
+
+###
+GET http://localhost:8081/weather/Kazan
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWx5YW50c2V2LnZsYWRpc2xhdjc3NUBtYWlsLnJ1IiwiZXhwIjoxNjgzNDc4NjA4LCJyb2xlcyI6WyJVU0VSIl0sImZpcnN0TmFtZSI6InRyZXBldHluIn0.ERFiLK9E7X9YtaBFsWOZmAaY0C8zGYMetN6bTe8Iq8I
+
+###
+GET http://localhost:8081/collectData
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWx5YW50c2V2LnZsYWRpc2xhdjc3NUBtYWlsLnJ1IiwiZXhwIjoxNjgzNDc4NjA4LCJyb2xlcyI6WyJVU0VSIl0sImZpcnN0TmFtZSI6InRyZXBldHluIn0.ERFiLK9E7X9YtaBFsWOZmAaY0C8zGYMetN6bTe8Iq8I
+
